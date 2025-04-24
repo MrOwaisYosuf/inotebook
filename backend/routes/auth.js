@@ -1,14 +1,18 @@
 const express = require('express');
+const User = require('../models/User');
 const router = express.Router();
 
+// Create a new user
+router.post('/register', (req, res) => {
+    console.log(req.body);
+    const user = User(req.body);
+    user.save()
+    res.send("User registered successfully");
+})
+
 router.get('/', (req, res) => {
-    obj = {
-        name: "Owais Yosuf",
-        dept: "Computer Science",
-        school: "School of Technology",
-        university: "Islamic University of Science and Technology",
-    }
-    res.json(obj);
+    console.log(req.body);
+    res.send("Success");
 })
 
 module.exports = router;
