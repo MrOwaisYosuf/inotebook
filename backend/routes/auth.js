@@ -38,7 +38,9 @@ router.post('/register', [
             console.error(error.message);
             res.status(500).send("Internal Server Error");
         }
-    };
+    } else {
+        return res.status(400).json({ error: result.array() });
+    }
 })
 
 // Authenticate user
@@ -69,6 +71,8 @@ router.post('/login', [
             console.error(error.message);
             res.status(500).send("Internal Server Error");
         }
+    } else {
+        return res.status(400).json({ error: result.array() });
     }
 })
 
