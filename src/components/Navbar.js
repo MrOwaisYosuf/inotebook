@@ -1,7 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { use, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 
 function Navbar() {
+    let location = useLocation();
+    useEffect(() => {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === location.pathname) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }, [location]);
+
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
