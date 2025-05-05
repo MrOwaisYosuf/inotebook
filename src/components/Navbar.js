@@ -1,7 +1,7 @@
-import React, { use, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-function Navbar() {
+const Navbar = () => {
     let location = useLocation();
     useEffect(() => {
         const navLinks = document.querySelectorAll('.nav-link');

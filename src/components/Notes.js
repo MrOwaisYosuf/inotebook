@@ -1,27 +1,32 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import NoteContext from '../context/notes/NoteContext';
+import NoteItem from './NoteItem';
+import AddNote from './AddNote';
 
-function Notes() {
+const Notes = () => {
     const context = useContext(NoteContext);
-    const { notes, setNotes } = context;
+    const { notes, getNotes } = context;
+    useEffect(() => {
+        getNotes();
+        // eslint-disable-next-line
+    }, [])
+
+    const updateNote = (currentNote) => {
+        console.log("Updating note", currentNote);
+    }
+
     return (
-        <div className="row my-3">
-            <h2>Your Notes</h2>
-            {notes.length === 0 && "No notes to display"}
-            {notes.map((note) => {
-                return (
-                    <div className="col-md-3" key={note._id}>
-                        <div className="card my-3" key={note._id}>
-                            <div className="card-body">
-                                <h5 className="card-title">{note.title}</h5>
-                                <p className="card-text">{note.description}</p>
-                                <p className="card-text"><small className="text-muted">{note.tag}</small></p>
-                            </div>
-                        </div>
-                    </div>
-                )
-            })}
-        </div>
+        <>
+            <AddNote />
+            <div className="row my-3">
+                <h2>Your Notes</h2>
+                {notes.map((note) => {
+                    return (
+                        <NoteItem key={note._id} note={note} updateNote={updateNote} />
+                    )
+                })}
+            </div>
+        </>
     )
 }
 
