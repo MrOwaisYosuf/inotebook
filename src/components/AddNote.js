@@ -18,7 +18,7 @@ const AddNote = () => {
     return (
         <div className="container my-3">
             <h2>Add a Note</h2>
-            <form>
+            <form className="my-3">
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Title</label>
                     <input type="text" className="form-control" id="title" name="title" onChange={onChange} />
